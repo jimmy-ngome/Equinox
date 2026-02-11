@@ -1,0 +1,319 @@
+/* ========================================
+   Habit Tracker Styles (Brutalist/Terminal)
+   ======================================== */
+
+.habit-tracker {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.tracker-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tracker-header h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.subtitle {
+  color: var(--text-secondary);
+  font-size: 0.8125rem;
+}
+
+.add-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--accent-primary);
+  border: 1px solid var(--accent-primary);
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-fast);
+}
+
+.add-btn:hover {
+  background: var(--accent-primary);
+  color: var(--bg-primary);
+}
+
+/* ========================================
+   Progress Ring
+   ======================================== */
+
+.progress-section {
+  display: flex;
+  justify-content: center;
+  padding: var(--spacing-lg) 0;
+}
+
+.progress-ring-container {
+  position: relative;
+  width: 150px;
+  height: 150px;
+}
+
+.progress-ring {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.progress-ring-bg {
+  stroke: var(--bg-secondary);
+}
+
+.progress-ring-fill {
+  stroke: var(--accent-primary);
+  transition: stroke-dasharray 0.5s ease;
+}
+
+.progress-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.progress-count {
+  display: block;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.progress-label {
+  font-size: 0.6875rem;
+  color: var(--text-secondary);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* ========================================
+   Habits List
+   ======================================== */
+
+.habits-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.habit-card {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md) var(--spacing-lg);
+  padding-left: 0;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  transition: var(--transition-normal);
+  overflow: hidden;
+  position: relative;
+}
+
+.habit-color-tag {
+  width: 4px;
+  align-self: stretch;
+  flex-shrink: 0;
+}
+
+.habit-card:hover {
+  border-color: var(--text-muted);
+}
+
+.habit-card.completed {
+  border-color: var(--accent-primary);
+}
+
+.habit-card.completed .habit-name {
+  opacity: 0.7;
+}
+
+.habit-check {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid var(--border-color);
+  background: transparent;
+  color: var(--accent-primary);
+  font-size: 0.875rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.habit-card.completed .habit-check {
+  background: var(--accent-primary);
+  border-color: var(--accent-primary);
+  color: var(--bg-primary);
+}
+
+.habit-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.habit-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.habit-name {
+  font-weight: 500;
+  font-size: 0.9375rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.habit-time {
+  font-size: 0.6875rem;
+  color: var(--text-muted);
+}
+
+.habit-streak {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+}
+
+.streak-count {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--accent-primary);
+  line-height: 1;
+}
+
+.streak-label {
+  font-size: 0.5625rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.delete-btn {
+  width: 24px;
+  height: 24px;
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 1.25rem;
+  cursor: pointer;
+  opacity: 0;
+  transition: var(--transition-fast);
+}
+
+.habit-card:hover .delete-btn {
+  opacity: 1;
+}
+
+.delete-btn:hover {
+  color: #ff6b6b;
+}
+
+/* ========================================
+   Icon Grid
+   ======================================== */
+
+.icon-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: var(--spacing-sm);
+}
+
+.icon-option {
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  background: #000000;
+  font-size: 1.25rem;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.icon-option:hover {
+  border-color: var(--text-secondary);
+}
+
+.icon-option.selected {
+  border-color: var(--accent-primary);
+  background: #000000;
+}
+
+/* ========================================
+   Color Grid
+   ======================================== */
+
+.color-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+}
+
+.color-option {
+  width: 32px;
+  height: 32px;
+  border: 2px solid transparent;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: var(--transition-fast);
+  outline: none;
+}
+
+.color-option:hover {
+  border-color: var(--text-secondary);
+}
+
+.color-option.selected {
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 1px var(--accent-primary);
+}
+
+/* ========================================
+   Responsive
+   ======================================== */
+
+@media (max-width: 480px) {
+  .habit-card {
+    padding: var(--spacing-sm) var(--spacing-md);
+  }
+
+  .habit-streak {
+    padding: var(--spacing-xs) var(--spacing-sm);
+  }
+
+  .progress-ring-container {
+    width: 120px;
+    height: 120px;
+  }
+
+  .progress-count {
+    font-size: 1.5rem;
+  }
+
+  .icon-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

@@ -1,0 +1,217 @@
+/* ========================================
+   Calendar Overview (Brutalist/Terminal)
+   ======================================== */
+
+.calendar-overview {
+  border: 1px solid var(--border-color);
+  padding: var(--spacing-lg);
+}
+
+.calendar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-md);
+}
+
+.calendar-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.calendar-nav {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  width: 32px;
+  height: 32px;
+  font-family: inherit;
+  font-size: 0.875rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-fast);
+}
+
+.calendar-nav:hover {
+  border-color: var(--accent-primary);
+}
+
+/* ========================================
+   Legend
+   ======================================== */
+
+.calendar-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm) var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+  padding-bottom: var(--spacing-sm);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.legend-dot {
+  width: 8px;
+  height: 8px;
+  flex-shrink: 0;
+}
+
+.legend-label {
+  font-size: 0.6875rem;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+/* ========================================
+   Calendar Grid
+   ======================================== */
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+}
+
+.calendar-day-label {
+  text-align: center;
+  font-size: 0.625rem;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding-bottom: var(--spacing-xs);
+}
+
+/* ========================================
+   Calendar Cells
+   ======================================== */
+
+.calendar-cell {
+  aspect-ratio: 1;
+  border: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  position: relative;
+  transition: var(--transition-fast);
+  padding: 2px;
+}
+
+.calendar-cell.empty {
+  border-color: transparent;
+}
+
+.calendar-cell.today {
+  border-color: var(--accent-primary);
+  border-width: 2px;
+}
+
+.calendar-cell.full {
+  background: #111;
+}
+
+.calendar-day-number {
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1;
+}
+
+/* ========================================
+   Habit Dots
+   ======================================== */
+
+.calendar-dots {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2px;
+  max-width: 100%;
+}
+
+.calendar-habit-dot {
+  width: 6px;
+  height: 6px;
+  background: #1a1a1a;
+  border: 1px solid #333;
+  transition: var(--transition-fast);
+}
+
+.calendar-habit-dot.done {
+  border-color: transparent;
+}
+
+/* ========================================
+   Compact Mode
+   ======================================== */
+
+.calendar-overview.compact {
+  padding: var(--spacing-md);
+}
+
+.calendar-overview.compact .calendar-title {
+  font-size: 0.75rem;
+}
+
+.calendar-overview.compact .calendar-nav {
+  width: 24px;
+  height: 24px;
+  font-size: 0.75rem;
+}
+
+.calendar-overview.compact .calendar-day-number {
+  font-size: 0.625rem;
+}
+
+.calendar-overview.compact .calendar-day-label {
+  font-size: 0.5rem;
+}
+
+.calendar-overview.compact .calendar-habit-dot {
+  width: 4px;
+  height: 4px;
+}
+
+.calendar-overview.compact .calendar-dots {
+  gap: 1px;
+}
+
+/* ========================================
+   Responsive
+   ======================================== */
+
+@media (max-width: 480px) {
+  .calendar-overview {
+    padding: var(--spacing-md);
+  }
+
+  .calendar-day-number {
+    font-size: 0.625rem;
+  }
+
+  .calendar-habit-dot {
+    width: 4px;
+    height: 4px;
+  }
+
+  .calendar-dots {
+    gap: 1px;
+  }
+
+  .calendar-legend {
+    gap: var(--spacing-xs) var(--spacing-sm);
+  }
+
+  .legend-label {
+    font-size: 0.5625rem;
+  }
+}

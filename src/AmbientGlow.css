@@ -1,0 +1,19 @@
+.ambient-glow-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 200vh;
+  z-index: -2;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.ambient-glow-shape {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  mix-blend-mode: overlay;
+  will-change: transform;
+}
+

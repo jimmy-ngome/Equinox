@@ -1,0 +1,407 @@
+/* ========================================
+   Calisthenics Progress (Brutalist/Terminal)
+   ======================================== */
+
+.cali-progress {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+/* ========================================
+   Time Scale Selector
+   ======================================== */
+
+.cali-time-scale {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.cali-scale-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.cali-scale-tabs button {
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  font-family: inherit;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  position: relative;
+  transition: var(--transition-fast);
+}
+
+.cali-scale-tabs button:hover {
+  color: var(--text-primary);
+}
+
+.cali-scale-tabs button.active {
+  color: var(--text-primary);
+}
+
+.cali-scale-tabs button.active::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--accent-primary);
+}
+
+/* Period Navigation */
+.cali-period-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-md);
+}
+
+.cali-period-nav button {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  width: 32px;
+  height: 32px;
+  font-family: inherit;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: var(--transition-fast);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cali-period-nav button:hover {
+  border-color: var(--accent-primary);
+}
+
+.cali-period-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  min-width: 160px;
+  text-align: center;
+}
+
+/* Custom Date Range */
+.cali-custom-range {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  justify-content: center;
+}
+
+.cali-custom-range label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.cali-custom-range input[type="date"] {
+  background: #000000;
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 0.8125rem;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  transition: var(--transition-fast);
+}
+
+.cali-custom-range input[type="date"]:focus {
+  outline: none;
+  border-color: var(--accent-primary);
+}
+
+/* ========================================
+   Exercise Progress Card
+   ======================================== */
+
+.cali-exercise-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  padding: var(--spacing-lg);
+  transition: var(--transition-normal);
+}
+
+.cali-exercise-header {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
+}
+
+.cali-exercise-name {
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.cali-exercise-name:hover {
+  color: var(--accent-primary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.cali-badge {
+  font-size: 0.625rem;
+  padding: 2px 6px;
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.cali-badge.method {
+  border-color: var(--text-muted);
+  color: var(--text-primary);
+}
+
+.cali-no-method {
+  color: var(--text-muted);
+  font-size: 0.8125rem;
+  font-style: italic;
+  padding: var(--spacing-sm) 0;
+}
+
+/* ========================================
+   Volume Progress (11 steps)
+   ======================================== */
+
+.cali-volume-bar {
+  margin-bottom: var(--spacing-md);
+}
+
+.cali-volume-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-sm);
+  font-size: 0.75rem;
+}
+
+.cali-volume-step {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.cali-volume-detail {
+  color: var(--text-secondary);
+}
+
+.cali-volume-blocks {
+  display: flex;
+  gap: 3px;
+}
+
+.cali-volume-block {
+  flex: 1;
+  height: 10px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  transition: var(--transition-fast);
+}
+
+.cali-volume-block.filled {
+  background: var(--accent-primary);
+  border-color: var(--accent-primary);
+}
+
+.cali-volume-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4px;
+  font-size: 0.5625rem;
+  color: var(--text-muted);
+  letter-spacing: 0.03em;
+}
+
+/* ========================================
+   PR Progress Bar
+   ======================================== */
+
+.cali-pr-bar {
+  margin-bottom: var(--spacing-md);
+}
+
+.cali-pr-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-sm);
+  font-size: 0.75rem;
+}
+
+.cali-pr-current {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.cali-pr-pct {
+  color: var(--text-secondary);
+}
+
+.cali-pr-track {
+  height: 10px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  position: relative;
+  overflow: hidden;
+}
+
+.cali-pr-fill {
+  height: 100%;
+  background: var(--accent-primary);
+  transition: width 0.5s ease;
+}
+
+/* ========================================
+   SVG Chart
+   ======================================== */
+
+.cali-chart-container {
+  margin-bottom: var(--spacing-md);
+  position: relative;
+}
+
+.cali-chart {
+  width: 100%;
+  height: 120px;
+  display: block;
+}
+
+.cali-chart-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80px;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  border: 1px solid var(--border-color);
+}
+
+/* ========================================
+   Log Button & Inline Form
+   ======================================== */
+
+.cali-log-toggle {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.cali-log-btn {
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--accent-primary);
+  background: var(--accent-primary);
+  color: var(--bg-primary);
+  font-size: 1.25rem;
+  font-family: inherit;
+  cursor: pointer;
+  transition: var(--transition-fast);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cali-log-btn:hover {
+  background: transparent;
+  color: var(--accent-primary);
+}
+
+.cali-log-label {
+  font-size: 0.6875rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.cali-log-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md);
+  border: 1px solid var(--border-color);
+  margin-top: var(--spacing-sm);
+}
+
+.cali-log-form input {
+  flex: 1;
+  min-width: 80px;
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: #000000;
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 0.8125rem;
+}
+
+.cali-log-form input:focus {
+  outline: none;
+  border-color: var(--accent-primary);
+}
+
+.cali-log-form input::placeholder {
+  color: var(--text-muted);
+}
+
+.cali-log-submit {
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: var(--accent-primary);
+  color: var(--bg-primary);
+  border: 1px solid var(--accent-primary);
+  font-family: inherit;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.cali-log-submit:hover {
+  background: transparent;
+  color: var(--accent-primary);
+}
+
+/* ========================================
+   Config Modal
+   ======================================== */
+
+/* ========================================
+   Responsive
+   ======================================== */
+
+@media (max-width: 480px) {
+  .cali-exercise-header {
+    flex-wrap: wrap;
+  }
+
+  .cali-custom-range {
+    flex-wrap: wrap;
+  }
+
+  .cali-log-form {
+    flex-direction: column;
+  }
+
+  .cali-log-form input {
+    min-width: 100%;
+  }
+
+  .cali-volume-labels {
+    display: none;
+  }
+}

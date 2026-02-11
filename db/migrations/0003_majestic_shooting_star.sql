@@ -1,0 +1,1 @@
+ALTER TABLE "habits" ADD COLUMN "color" text DEFAULT '#22d3ee';

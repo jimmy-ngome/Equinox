@@ -1,0 +1,305 @@
+/* ========================================
+   Dashboard Styles (Brutalist/Terminal)
+   ======================================== */
+
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.dashboard-header h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: var(--spacing-xs);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.date-display {
+  color: var(--text-secondary);
+  font-size: 0.8125rem;
+  text-transform: capitalize;
+  letter-spacing: 0.02em;
+}
+
+/* ========================================
+   Stats Grid
+   ======================================== */
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-md);
+}
+
+.stat-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  transition: var(--transition-normal);
+}
+
+.stat-card:hover {
+  border-color: var(--text-muted);
+}
+
+.stat-card.accent {
+  border-color: var(--accent-primary);
+}
+
+.stat-icon {
+  font-size: 1.5rem;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+}
+
+.stat-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.stat-label {
+  font-size: 0.6875rem;
+  color: var(--text-secondary);
+  margin-top: 2px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* ========================================
+   Week Progress
+   ======================================== */
+
+.week-progress-card h3 {
+  margin-bottom: var(--spacing-lg);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.week-grid {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--spacing-sm);
+  height: 120px;
+}
+
+.day-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.day-bar {
+  flex: 1;
+  width: 100%;
+  max-width: 32px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.day-fill {
+  background: var(--accent-primary);
+  border-radius: var(--radius-sm);
+  transition: height 0.5s ease;
+}
+
+.workout-dot {
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8px;
+  height: 8px;
+  background: #888888;
+  border: 1px solid #ffffff;
+  border-radius: 50%;
+}
+
+.day-label {
+  font-size: 0.6875rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.day-column.completed .day-label {
+  color: var(--accent-primary);
+}
+
+/* ========================================
+   Recent Activity
+   ======================================== */
+
+.recent-activity-card h3 {
+  margin-bottom: var(--spacing-lg);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.activity-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.activity-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  transition: var(--transition-fast);
+}
+
+.activity-item:hover {
+  border-color: var(--text-muted);
+}
+
+.activity-icon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  font-size: 1.25rem;
+}
+
+.activity-icon.musculation {
+  background: transparent;
+}
+
+.activity-icon.calisthenics {
+  background: transparent;
+}
+
+.activity-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.activity-name {
+  font-weight: 500;
+  font-size: 0.875rem;
+}
+
+.activity-date {
+  font-size: 0.6875rem;
+  color: var(--text-muted);
+}
+
+.activity-duration {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+/* ========================================
+   Quick Actions
+   ======================================== */
+
+.quick-actions {
+  display: flex;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-md);
+}
+
+.action-btn {
+  flex: 1;
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-lg);
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 0.8125rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+}
+
+.action-btn span {
+  font-size: 1.25rem;
+}
+
+.action-btn.primary {
+  background: var(--accent-primary);
+  color: var(--bg-primary);
+  border: 1px solid var(--accent-primary);
+  cursor: pointer;
+}
+
+.action-btn.primary:hover {
+  background: transparent;
+  color: var(--accent-primary);
+}
+
+.action-btn.secondary {
+  background: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  cursor: pointer;
+}
+
+.action-btn.secondary:hover {
+  border-color: var(--accent-primary);
+}
+
+/* ========================================
+   Responsive
+   ======================================== */
+
+@media (max-width: 480px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stat-card {
+    padding: var(--spacing-md);
+  }
+
+  .stat-value {
+    font-size: 1.25rem;
+  }
+
+  .quick-actions {
+    flex-direction: column;
+  }
+
+  .week-grid {
+    height: 100px;
+  }
+}
