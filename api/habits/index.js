@@ -1,11 +1,29 @@
 import { db } from "../../db/index.js";
-import { habits } from "../../db/schema.js";
+import { habits, habitCompletions } from "../../db/schema.js";
+import { eq, and } from "drizzle-orm";
 
 // GET - Liste toutes les habitudes actives
 export async function GET() {
   try {
+    const now = new Date();
+    const today = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
     const allHabits = await db.select().from(habits);
-    return Response.json(allHabits);
+
+    // Get today's completions
+    const todayCompletions = await db
+      .select()
+      .from(habitCompletions)
+      .where(eq(habitCompletions.completedDate, today));
+
+    const completedIds = new Set(todayCompletions.map(c => c.habitId));
+
+    // Override completedToday based on actual completions for today
+    const habitsWithStatus = allHabits.map(h => ({
+      ...h,
+      completedToday: completedIds.has(h.id),
+    }));
+
+    return Response.json(habitsWithStatus);
   } catch (error) {
     return Response.json({ error: error.message }, { status: 500 });
   }

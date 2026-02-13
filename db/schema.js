@@ -47,7 +47,7 @@ export const cmsColumns = pgTable("cms_columns", {
 export const habits = pgTable("habits", {
   id: serial("id").primaryKey(),
   name: text("name").notNull(),
-  icon: text("icon").default("⭐"),
+  icon: text("icon").default("*"),
   color: text("color").default("#22d3ee"),
   time: text("time").default("Matin"),
   streak: integer("streak").default(0),
@@ -85,6 +85,8 @@ export const exercises = pgTable("exercises", {
   currentValue: real("current_value"),
   volumeStep: integer("volume_step").default(0),
   volumeWeight: text("volume_weight"),
+  unilateral: boolean("unilateral").default(false),
+  goalCompletedDate: date("goal_completed_date"),
   createdAt: timestamp("created_at").defaultNow(),
 });
 

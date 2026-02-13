@@ -270,6 +270,14 @@
    SVG Chart
    ======================================== */
 
+.cali-chart-label {
+  font-size: 0.625rem;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: var(--spacing-xs);
+}
+
 .cali-chart-container {
   margin-bottom: var(--spacing-md);
   position: relative;
@@ -374,6 +382,241 @@
 .cali-log-submit:hover {
   background: transparent;
   color: var(--accent-primary);
+}
+
+/* ========================================
+   Goal Completed / 100% Banner
+   ======================================== */
+
+.cali-completed-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.6875rem;
+  color: var(--text-secondary);
+  letter-spacing: 0.03em;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border: 1px solid var(--border-color);
+  margin-bottom: var(--spacing-sm);
+}
+
+.cali-goal-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+  border: 1px solid var(--accent-primary);
+  background: var(--bg-secondary);
+  margin-bottom: var(--spacing-md);
+  animation: fadeIn 0.3s ease;
+}
+
+.cali-goal-banner-top {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.cali-goal-banner-title {
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.cali-goal-banner-date {
+  font-size: 0.6875rem;
+  color: var(--text-secondary);
+}
+
+.cali-new-goal-btn {
+  padding: var(--spacing-xs) var(--spacing-md) !important;
+  font-size: 0.6875rem !important;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+/* New Goal Modal extras */
+.cali-new-goal-subtitle {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-lg);
+  font-weight: 500;
+}
+
+.cali-new-goal-info {
+  font-size: 0.6875rem;
+  color: var(--text-muted);
+  margin-top: var(--spacing-sm);
+  font-style: italic;
+}
+
+.cali-new-goal-readonly {
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+/* ========================================
+   Adjust Progression
+   ======================================== */
+
+.cali-delete-btn {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-muted);
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.cali-delete-btn:hover {
+  border-color: #ff4444;
+  color: #ff4444;
+}
+
+.cali-adjust-btn {
+  margin-left: auto;
+  background: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-muted);
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.cali-adjust-btn:hover {
+  border-color: var(--accent-primary);
+  color: var(--text-primary);
+}
+
+.cali-adjust-btn.active {
+  background: var(--accent-primary);
+  color: var(--bg-primary);
+  border-color: var(--accent-primary);
+}
+
+/* Volume blocks in adjust mode */
+.cali-volume-blocks.adjust-mode {
+  gap: 4px;
+}
+
+.cali-volume-block.clickable {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 20px;
+  transition: var(--transition-fast);
+}
+
+.cali-volume-block.clickable:hover {
+  border-color: var(--accent-primary);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.cali-volume-block.clickable.target {
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 1px var(--accent-primary);
+}
+
+.cali-volume-labels .label-filled {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+/* PR adjust form */
+.cali-adjust-pr-form {
+  margin-top: var(--spacing-md);
+  padding: var(--spacing-md);
+  border: 1px solid var(--border-color);
+}
+
+.cali-adjust-pr-form label {
+  display: block;
+  font-size: 0.6875rem;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: var(--spacing-sm);
+}
+
+.cali-adjust-pr-input {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.cali-adjust-pr-input input {
+  flex: 1;
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: #000;
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.cali-adjust-pr-input input:focus {
+  outline: none;
+  border-color: var(--accent-primary);
+}
+
+.cali-adjust-pr-unit {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  min-width: 30px;
+}
+
+/* Adjust action bar */
+.cali-adjust-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-md);
+  padding: var(--spacing-md);
+  border: 1px solid var(--accent-primary);
+  background: var(--bg-secondary);
+  animation: fadeIn 0.2s ease;
+}
+
+.cali-adjust-hint {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.cali-adjust-btns {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+.cali-adjust-btns .btn-secondary {
+  padding: var(--spacing-xs) var(--spacing-md);
+  font-size: 0.6875rem;
+}
+
+.cali-adjust-btns .btn-primary {
+  padding: var(--spacing-xs) var(--spacing-md);
+  font-size: 0.6875rem;
+  gap: 4px;
 }
 
 /* ========================================

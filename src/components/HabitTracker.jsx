@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Plus, Check, X, Trash2, Pencil } from "lucide-react";
 import CalendarOverview from "./CalendarOverview";
 import "./HabitTracker.css";
 
@@ -7,14 +8,14 @@ const HABIT_COLORS = [
   "#facc15", "#f87171", "#60a5fa", "#e879f9", "#34d399",
 ];
 
-const iconOptions = ["⭐", "🧘", "📚", "💪", "💧", "🍬", "✍️", "🏃", "😴", "🥗", "💊", "🎯"];
+const iconOptions = ["*", "+", "#", "^", "~", "!", "@", ">", "=", "%", "&", "o"];
 
 const HabitTracker = () => {
   const [habits, setHabits] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showAddModal, setShowAddModal] = useState(false);
   const [editingHabit, setEditingHabit] = useState(null);
-  const [newHabit, setNewHabit] = useState({ name: "", icon: "⭐", color: "#22d3ee", time: "Matin" });
+  const [newHabit, setNewHabit] = useState({ name: "", icon: "*", color: "#22d3ee", time: "Matin" });
 
   const fetchHabits = async () => {
     try {
@@ -66,7 +67,7 @@ const HabitTracker = () => {
       });
       const created = await res.json();
       setHabits([...habits, created]);
-      setNewHabit({ name: "", icon: "⭐", color: "#22d3ee", time: "Matin" });
+      setNewHabit({ name: "", icon: "*", color: "#22d3ee", time: "Matin" });
       setShowAddModal(false);
     } catch (err) {
       console.error("Erreur ajout habitude:", err);
@@ -140,7 +141,7 @@ const HabitTracker = () => {
           <p className="subtitle">Aujourd'hui</p>
         </div>
         <button className="add-btn" onClick={() => setShowAddModal(true)}>
-          <span>+</span>
+          <Plus size={18} />
         </button>
       </div>
 
@@ -197,7 +198,7 @@ const HabitTracker = () => {
                 className="habit-check"
                 onClick={() => toggleHabit(habit.id)}
               >
-                {habit.completedToday ? "✓" : ""}
+                {habit.completedToday ? <Check size={14} strokeWidth={3} /> : ""}
               </button>
               <div className="habit-icon">{habit.icon}</div>
               <div
@@ -213,7 +214,7 @@ const HabitTracker = () => {
                 <span className="streak-label">jours</span>
               </div>
               <button className="delete-btn" onClick={() => deleteHabit(habit.id)}>
-                ×
+                <Trash2 size={14} />
               </button>
             </div>
           ))

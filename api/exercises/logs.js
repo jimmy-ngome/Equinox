@@ -31,6 +31,27 @@ export async function GET(request) {
   }
 }
 
+// DELETE - Supprime tous les logs d'un exercice
+// ?exerciseId=X
+export async function DELETE(request) {
+  try {
+    const url = new URL(request.url);
+    const exerciseId = url.searchParams.get("exerciseId");
+
+    if (!exerciseId) {
+      return Response.json({ error: "exerciseId requis" }, { status: 400 });
+    }
+
+    await db
+      .delete(exerciseLogs)
+      .where(eq(exerciseLogs.exerciseId, parseInt(exerciseId)));
+
+    return Response.json({ success: true });
+  } catch (error) {
+    return Response.json({ error: error.message }, { status: 500 });
+  }
+}
+
 // POST - Crée un log d'exercice
 export async function POST(request) {
   try {

@@ -28,7 +28,7 @@ export async function POST(request) {
       name, category, type,
       pr, lastWeight, lastReps, progression, reps,
       progressionMethod, unit, baseValue, goalValue, currentValue,
-      volumeStep, volumeWeight,
+      volumeStep, volumeWeight, unilateral,
     } = body;
 
     if (!name || !category || !type) {
@@ -54,6 +54,7 @@ export async function POST(request) {
     if (currentValue !== undefined) values.currentValue = currentValue;
     if (volumeStep !== undefined) values.volumeStep = volumeStep;
     if (volumeWeight !== undefined) values.volumeWeight = volumeWeight;
+    if (unilateral !== undefined) values.unilateral = unilateral;
 
     const newExercise = await db
       .insert(exercises)

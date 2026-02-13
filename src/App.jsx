@@ -1,12 +1,32 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { LayoutDashboard, CheckSquare, Dumbbell, ChevronDown } from "lucide-react";
 import "./App.css";
 import HabitTracker from "./components/HabitTracker";
 import WorkoutTracker from "./components/WorkoutTracker";
 import Dashboard from "./components/Dashboard";
-import CmsPanel from "./components/cms/CmsPanel";
 
 function App() {
   const [activeTab, setActiveTab] = useState("dashboard");
+  const [canScroll, setCanScroll] = useState(false);
+
+  useEffect(() => {
+    const check = () => {
+      const scrollTop = window.scrollY;
+      const windowH = window.innerHeight;
+      const docH = document.documentElement.scrollHeight;
+      setCanScroll(docH > windowH + 40 && scrollTop + windowH < docH - 20);
+    };
+    check();
+    window.addEventListener("scroll", check, { passive: true });
+    window.addEventListener("resize", check);
+    const obs = new MutationObserver(check);
+    obs.observe(document.body, { childList: true, subtree: true });
+    return () => {
+      window.removeEventListener("scroll", check);
+      window.removeEventListener("resize", check);
+      obs.disconnect();
+    };
+  }, [activeTab]);
 
   return (
     <main className="app">
@@ -23,25 +43,19 @@ function App() {
               className={`nav-tab ${activeTab === "dashboard" ? "active" : ""}`}
               onClick={() => setActiveTab("dashboard")}
             >
-              Dashboard
+              <LayoutDashboard size={14} /> Dashboard
             </button>
             <button
               className={`nav-tab ${activeTab === "habits" ? "active" : ""}`}
               onClick={() => setActiveTab("habits")}
             >
-              Habitudes
+              <CheckSquare size={14} /> Habitudes
             </button>
             <button
               className={`nav-tab ${activeTab === "workout" ? "active" : ""}`}
               onClick={() => setActiveTab("workout")}
             >
-              Entraînement
-            </button>
-            <button
-              className={`nav-tab ${activeTab === "cms" ? "active" : ""}`}
-              onClick={() => setActiveTab("cms")}
-            >
-              CMS
+              <Dumbbell size={14} /> Entraînement
             </button>
           </nav>
         </header>
@@ -51,7 +65,6 @@ function App() {
           {activeTab === "dashboard" && <Dashboard />}
           {activeTab === "habits" && <HabitTracker />}
           {activeTab === "workout" && <WorkoutTracker />}
-          {activeTab === "cms" && <CmsPanel />}
         </div>
 
         {/* Mobile Navigation */}
@@ -60,31 +73,28 @@ function App() {
             className={`mobile-nav-btn ${activeTab === "dashboard" ? "active" : ""}`}
             onClick={() => setActiveTab("dashboard")}
           >
-            <span className="nav-icon">◈</span>
+            <LayoutDashboard size={20} />
             <span>Home</span>
           </button>
           <button
             className={`mobile-nav-btn ${activeTab === "habits" ? "active" : ""}`}
             onClick={() => setActiveTab("habits")}
           >
-            <span className="nav-icon">✓</span>
+            <CheckSquare size={20} />
             <span>Habits</span>
           </button>
           <button
             className={`mobile-nav-btn ${activeTab === "workout" ? "active" : ""}`}
             onClick={() => setActiveTab("workout")}
           >
-            <span className="nav-icon">◆</span>
+            <Dumbbell size={20} />
             <span>Workout</span>
           </button>
-          <button
-            className={`mobile-nav-btn ${activeTab === "cms" ? "active" : ""}`}
-            onClick={() => setActiveTab("cms")}
-          >
-            <span className="nav-icon">⚙</span>
-            <span>CMS</span>
-          </button>
         </nav>
+      </div>
+
+      <div className={`scroll-fade${canScroll ? "" : " hidden"}`}>
+        <ChevronDown size={18} />
       </div>
     </main>
   );

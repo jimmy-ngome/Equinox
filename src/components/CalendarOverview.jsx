@@ -1,4 +1,5 @@
 import { useState, useEffect, useMemo } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import "./CalendarOverview.css";
 
 const DAYS = ["Lu", "Ma", "Me", "Je", "Ve", "Sa", "Di"];
@@ -85,11 +86,11 @@ const CalendarOverview = ({ compact = false, habits = [] }) => {
   return (
     <div className={`calendar-overview ${compact ? "compact" : ""}`}>
       <div className="calendar-header">
-        <button className="calendar-nav" onClick={prevMonth}>&lt;</button>
+        <button className="calendar-nav" onClick={prevMonth}><ChevronLeft size={16} /></button>
         <span className="calendar-title">
           {MONTHS[currentDate.month]} {currentDate.year}
         </span>
-        <button className="calendar-nav" onClick={nextMonth}>&gt;</button>
+        <button className="calendar-nav" onClick={nextMonth}><ChevronRight size={16} /></button>
       </div>
 
       {/* Legend */}

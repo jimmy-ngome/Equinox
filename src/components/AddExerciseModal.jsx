@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Check } from "lucide-react";
 
 const CALI_CATEGORIES = ["Push", "Pull", "Balance", "Abs"];
 
@@ -17,8 +18,11 @@ const AddExerciseModal = ({ workoutType, onClose, onCreated, exercise }) => {
   const isEdit = !!exercise;
   const isCali = workoutType === "calisthenics";
 
+  const [success, setSuccess] = useState(false);
+
   // Common
   const [name, setName] = useState(exercise?.name || "");
+  const [unilateral, setUnilateral] = useState(exercise?.unilateral || false);
 
   // Musculation
   const [muscuCategory, setMuscuCategory] = useState(exercise?.category || "");
@@ -40,6 +44,9 @@ const AddExerciseModal = ({ workoutType, onClose, onCreated, exercise }) => {
     if (m === "volume") {
       setUnit("reps");
     }
+    if (m === "pr") {
+      setUnit(style === "bodyweight" ? "reps" : "kg");
+    }
   };
 
   const handleSubmit = async () => {
@@ -56,6 +63,7 @@ const AddExerciseModal = ({ workoutType, onClose, onCreated, exercise }) => {
         pr: muscuPr || null,
         lastWeight: muscuLastWeight || null,
         lastReps: muscuLastReps || null,
+        unilateral,
       };
     } else {
       body = {
@@ -65,6 +73,7 @@ const AddExerciseModal = ({ workoutType, onClose, onCreated, exercise }) => {
         progression: style,
         progressionMethod: method || null,
         unit: method === "pr" ? unit : "reps",
+        unilateral,
       };
 
       if (method === "pr") {
@@ -89,13 +98,29 @@ const AddExerciseModal = ({ workoutType, onClose, onCreated, exercise }) => {
         body: JSON.stringify(body),
       });
       const result = await res.json();
-      onCreated(result);
+      setSuccess(true);
+      setTimeout(() => onCreated(result), 900);
     } catch (err) {
       console.error("Erreur exercice:", err);
     }
   };
 
   const canSubmit = name.trim() && (isCali ? caliCategory : muscuCategory.trim());
+
+  if (success) {
+    return (
+      <div className="modal-overlay">
+        <div className="modal modal-success" onClick={e => e.stopPropagation()}>
+          <div className="success-animation">
+            <div className="success-circle">
+              <Check size={32} strokeWidth={3} />
+            </div>
+            <p className="success-text">{isEdit ? "Modifié" : "Créé"}</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="modal-overlay" onClick={onClose}>
@@ -111,6 +136,27 @@ const AddExerciseModal = ({ workoutType, onClose, onCreated, exercise }) => {
             onChange={e => setName(e.target.value)}
             placeholder={isCali ? "Ex: Pull-ups, Front Lever..." : "Ex: Bench Press, Squat..."}
           />
+        </div>
+
+        {/* Unilateral toggle */}
+        <div className="form-group">
+          <label>Unilateral</label>
+          <div className="btn-group">
+            <button
+              type="button"
+              className={`btn-option${!unilateral ? " active" : ""}`}
+              onClick={() => setUnilateral(false)}
+            >
+              Non
+            </button>
+            <button
+              type="button"
+              className={`btn-option${unilateral ? " active" : ""}`}
+              onClick={() => setUnilateral(true)}
+            >
+              Oui
+            </button>
+          </div>
         </div>
 
         {/* ===== MUSCULATION ===== */}
@@ -180,14 +226,14 @@ const AddExerciseModal = ({ workoutType, onClose, onCreated, exercise }) => {
                 <button
                   type="button"
                   className={`btn-option${style === "bodyweight" ? " active" : ""}`}
-                  onClick={() => setStyle("bodyweight")}
+                  onClick={() => { setStyle("bodyweight"); if (unit === "reps") setUnit("kg"); }}
                 >
                   Bodyweight
                 </button>
                 <button
                   type="button"
                   className={`btn-option${style === "weighted" ? " active" : ""}`}
-                  onClick={() => setStyle("weighted")}
+                  onClick={() => { setStyle("weighted"); setUnit("kg"); }}
                 >
                   Weighted
                 </button>
@@ -197,6 +243,13 @@ const AddExerciseModal = ({ workoutType, onClose, onCreated, exercise }) => {
             <div className="form-group">
               <label>Progression</label>
               <div className="btn-group">
+                <button
+                  type="button"
+                  className={`btn-option${method === "" ? " active" : ""}`}
+                  onClick={() => handleMethodChange("")}
+                >
+                  Aucun
+                </button>
                 <button
                   type="button"
                   className={`btn-option${method === "volume" ? " active" : ""}`}
@@ -216,6 +269,7 @@ const AddExerciseModal = ({ workoutType, onClose, onCreated, exercise }) => {
 
             {method === "pr" && (
               <>
+                {style !== "weighted" && (
                 <div className="form-group">
                   <label>Quantificateur</label>
                   <div className="btn-group">
@@ -224,26 +278,25 @@ const AddExerciseModal = ({ workoutType, onClose, onCreated, exercise }) => {
                       className={`btn-option${unit === "reps" ? " active" : ""}`}
                       onClick={() => setUnit("reps")}
                     >
-                      Reps max
+                      Reps
+                    </button>
+                    <button
+                      type="button"
+                      className={`btn-option${unit === "kg" ? " active" : ""}`}
+                      onClick={() => setUnit("kg")}
+                    >
+                      Kg
                     </button>
                     <button
                       type="button"
                       className={`btn-option${unit === "s" ? " active" : ""}`}
                       onClick={() => setUnit("s")}
                     >
-                      Temps
+                      Secondes
                     </button>
-                    {style === "weighted" && (
-                      <button
-                        type="button"
-                        className={`btn-option${unit === "kg" ? " active" : ""}`}
-                        onClick={() => setUnit("kg")}
-                      >
-                        Kg
-                      </button>
-                    )}
                   </div>
                 </div>
+                )}
                 <div className="form-group">
                   <label>Départ</label>
                   <input

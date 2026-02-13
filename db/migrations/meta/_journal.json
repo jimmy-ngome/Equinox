@@ -43,6 +43,20 @@
       "when": 1770818408594,
       "tag": "0005_heavy_tombstone",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1770834719457,
+      "tag": "0006_overjoyed_johnny_storm",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1770855585188,
+      "tag": "0007_gorgeous_risque",
+      "breakpoints": true
     }
   ]
 }
