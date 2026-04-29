@@ -608,3 +608,13 @@ input[type="number"] {
     bottom: 60px;
   }
 }
+
+/* Logout button */
+.logout-btn {
+  color: var(--text-muted) !important;
+  margin-left: auto;
+}
+
+.logout-btn:hover {
+  color: #ff6b6b !important;
+}
