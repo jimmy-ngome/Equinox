@@ -2,7 +2,7 @@
 
 A habit and workout tracker with a brutalist/terminal design. Track daily habits with streaks, log workouts, and monitor calisthenics progressions.
 
-**[Portfolio](https://jimmmy-portfolio.vercel.app)**
+**[Live Demo](https://equinox-net-wave.vercel.app)** · **[Portfolio](https://jimmmy-portfolio.vercel.app)**
 
 ---
 
