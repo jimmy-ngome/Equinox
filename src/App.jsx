@@ -37,7 +37,18 @@ function installDemoFetch() {
     if (path.includes("/api/auth/setup")) return json({ needsSetup: false });
 
     // Habits
-    if (path === "/api/habits" && method === "GET") return json(state.habits);
+    if (path === "/api/habits" && method === "GET") {
+      const todayStr = new Date().toISOString().split("T")[0];
+      const todayCompletedIds = new Set(
+        state.completions.filter(c => c.completedDate === todayStr).map(c => c.habitId)
+      );
+      const habitsWithStatus = state.habits.map(h => ({
+        ...h,
+        completedToday: todayCompletedIds.has(h.id),
+        streak: h.streak || 0,
+      }));
+      return json(habitsWithStatus);
+    }
     if (path === "/api/habits" && method === "POST") {
       const id = ++demoIdCounter;
       const habit = { id, ...body, userId: 0 };
@@ -60,16 +71,22 @@ function installDemoFetch() {
       return json(state.completions);
     }
     if (path.includes("/api/habits/completions") && method === "POST") {
-      const existing = state.completions.find(c => c.habitId === body.habitId && c.date === body.date);
+      const completedDate = body.completedDate || body.date;
+      const existing = state.completions.find(c => c.habitId === body.habitId && c.completedDate === completedDate);
       if (existing) {
         state.completions = state.completions.filter(c => c.id !== existing.id);
         return json({ removed: true });
       } else {
         const id = ++demoIdCounter;
-        const completion = { id, ...body, userId: 0 };
+        const completion = { id, habitId: body.habitId, completedDate, userId: 0 };
         state.completions.push(completion);
         return json(completion);
       }
+    }
+    if (path.includes("/api/habits/completions") && method === "DELETE") {
+      const completedDate = body.completedDate || body.date;
+      state.completions = state.completions.filter(c => !(c.habitId === body.habitId && c.completedDate === completedDate));
+      return json({ ok: true });
     }
 
     // Exercises
